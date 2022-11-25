@@ -37,11 +37,9 @@ function Programare() {
                                 <input type="text" placeholder="" id="custom-input" />
                             </div>
                             <select className="" name="cars" id="custom" hidden >
-                                <option defaultValue="Selectați" hidden="true">Selectați</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
+                                <option defaultValue="Selectați" hidden="true">Selectați vaccin</option>
+                                <option value="v1">Vaccin1</option>
+                                <option value="v2">Vaccin2</option>
                             </select>
                             <input type="submit" value="Programează" className="btn solid" id="submit"/>
                         </form>
