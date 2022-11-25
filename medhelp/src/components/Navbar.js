@@ -11,7 +11,7 @@ class Navbar extends Component {
         return (<>
             <nav className='navbar'>
                 <Link className='navbar-logo' to='/'>
-                    <img src="/medhelp.png" alt="Image not found" width={90}/>
+                    <img src="/medhelp.png" alt="Image not found" width={100}/>
                 </Link>
                 <div>
                     <ul id="navbar" className={this.state.clicked ? "#navbar active": "#navbar"}>
