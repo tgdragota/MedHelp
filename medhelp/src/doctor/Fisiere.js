@@ -1,7 +1,53 @@
 import './Fisiere.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 function Fisiere() {
+
+    useEffect(() => {
+        const onPageLoad = () => {
+            const dropArea = document.querySelector(".drag-image"),
+                dragText = dropArea.querySelector("#text"),
+                button = dropArea.querySelector("#browse"),
+                input = dropArea.querySelector("#fisiere");
+            let file;
+
+            button.onclick = ()=>{
+                input.click();
+            }
+
+            input.addEventListener("change", function(){
+
+                file = this.files[0];
+                document.getElementById('fileName').innerHTML = file.name;
+            });
+
+            dropArea.addEventListener("dragover", (event)=>{
+                event.preventDefault();
+                dragText.textContent = "Release to Upload File";
+            });
+
+
+            dropArea.addEventListener("dragleave", ()=>{
+                dragText.textContent = "Drag & Drop to Upload File";
+            });
+
+            dropArea.addEventListener("drop", (event)=>{
+                event.preventDefault();
+
+                file = event.dataTransfer.files[0];
+                document.getElementById('fileName').innerHTML = file.name;
+            });
+        };
+
+        // Check if the page has already loaded
+        if (document.readyState === 'complete') {
+            onPageLoad();
+        } else {
+            window.addEventListener('load', onPageLoad);
+            // Remove the event listener when component unmounts
+            return () => window.removeEventListener('load', onPageLoad);
+        }
+    }, []);
 
     return (
         <>
@@ -23,40 +69,6 @@ function Fisiere() {
                                 <h6 id="text">Drag & Drop File Here</h6>
                                 <span>OR</span>
                                 <button id="browse"
-                                onClick={ () => {
-                                    const dropArea = document.querySelector(".drag-image"),
-                                    dragText = dropArea.querySelector("#text"),
-                                    button = dropArea.querySelector("#browse"),
-                                    input = dropArea.querySelector("#fisiere");
-                                    let file;
-
-                                    button.onclick = ()=>{
-                                    input.click();
-                                }
-
-                                    input.addEventListener("change", function(){
-
-                                    file = this.files[0];
-                                    document.getElementById('fileName').innerHTML = file.name;
-                                });
-
-                                    dropArea.addEventListener("dragover", (event)=>{
-                                    event.preventDefault();
-                                    dragText.textContent = "Release to Upload File";
-                                });
-
-
-                                    dropArea.addEventListener("dragleave", ()=>{
-                                    dragText.textContent = "Drag & Drop to Upload File";
-                                });
-
-                                    dropArea.addEventListener("drop", (event)=>{
-                                    event.preventDefault();
-
-                                    file = event.dataTransfer.files[0];
-                                    document.getElementById('fileName').innerHTML = file.name;
-                                });
-                                }}
                                 >Browse File</button>
                                 <span id="fileName" className="text-primary "/>
                                 <input id="fisiere" type="file" hidden />
