@@ -25,6 +25,11 @@ class Navbar extends Component {
                                 PROGRAMARE
                             </Link>
                         </li>
+                        <li>
+                            <Link to='/documente'>
+                                DOCUMENTE
+                            </Link>
+                        </li>
                         <li className='nav-item'>
                             <Link to='/cont' className='nav-links' >
                                 Contul meu <i className="fa fa-user"/>

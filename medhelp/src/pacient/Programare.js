@@ -1,6 +1,6 @@
 import './Programare.css';
 
-function Programare() {
+function ProgramareConsultatie() {
 
     return (
         <>
@@ -9,20 +9,20 @@ function Programare() {
                     <div className="prog-viz">
                         <form action="#" className="prog-form">
                             <h2 className="title">Programare</h2><br />
-                                <div className="select-form">
-                                    <input type="radio" id="consultatie" name="tip" value="consultatie" defaultChecked="true"
-                                           onChange={() => {
-                                               const div = document.querySelector("#custom");
-                                               div.setAttribute('class', '');
-                                           }}/>
-                                    <label htmlFor="consultatie">Consultație</label>
-                                    <input type="radio" id="vaccinare" name="tip" value="vaccinare"
-                                           onChange={() => {
-                                               const div = document.querySelector("#custom");
-                                               div.setAttribute('class', 'drop-down-list');
-                                           }}/>
-                                    <label htmlFor="vaccinare">Vaccin</label>
-                                </div>
+                            <div className="select-form">
+                                <input type="radio" id="consultatie" name="tip" value="consultatie" defaultChecked="true"
+                                       onChange={() => {
+                                           const div = document.querySelector("#custom");
+                                           div.setAttribute('class', '');
+                                       }}/>
+                                <label htmlFor="consultatie">Consultație</label>
+                                <input type="radio" id="vaccinare" name="tip" value="vaccinare"
+                                       onChange={() => {
+                                           const div = document.querySelector("#custom");
+                                           div.setAttribute('class', 'drop-down-list');
+                                       }}/>
+                                <label htmlFor="vaccinare">Vaccin</label>
+                            </div>
                             <br />
                             <div className="input-field">
                                 <i className="fa fa-calendar"></i>
@@ -37,17 +37,20 @@ function Programare() {
                                 <input type="text" placeholder="" id="custom-input" />
                             </div>
                             <select className="" name="cars" id="custom" hidden >
-                                <option defaultValue="Selectați" hidden="true">Selectați vaccin</option>
-                                <option value="v1">Vaccin1</option>
-                                <option value="v2">Vaccin2</option>
+                                <option defaultValue="Selectați" hidden="true">Selectați</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="fiat">Fiat</option>
+                                <option value="audi">Audi</option>
                             </select>
                             <input type="submit" value="Programează" className="btn solid" id="submit"/>
                         </form>
                         <form action="#" className="viz-form">
-                            <h2 className="title">Vizualizare programări</h2>
+                            <h2 className="title">Vizualizare programări consultați</h2>
                         </form>
                     </div>
                 </div>
+
                 <div className="panels-container">
                     <div className="panel left-panel">
                         <div className="content">
@@ -84,7 +87,7 @@ function Programare() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default Programare
+export default ProgramareConsultatie;
