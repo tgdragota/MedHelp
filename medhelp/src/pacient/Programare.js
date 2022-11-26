@@ -1,6 +1,6 @@
 import './Programare.css';
 
-function ProgramareConsultatie() {
+function Programare() {
 
     return (
         <>
@@ -90,4 +90,4 @@ function ProgramareConsultatie() {
     );
 }
 
-export default ProgramareConsultatie;
+export default Programare;

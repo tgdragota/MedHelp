@@ -1,6 +1,26 @@
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, logInWithEmailAndPassword, registerWithEmailAndPassword } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import './Cont.css';
 
 function Cont() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+    useEffect(() => {
+        /*if (loading) {
+            console.log("**");
+            // maybe trigger a loading screen
+            return;
+        }*/
+        if (user) navigate("/dashboard");
+    }, [user, loading]);
+
     return (
         <>
             <div className="container">
@@ -10,19 +30,19 @@ function Cont() {
                             <h2 className="title">Autentificare</h2>
                             <div className="input-field">
                                 <i className="fa fa-user"></i>
-                                <input type="text" placeholder="Email"/>
+                                <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-lock"></i>
-                                <input type="password" placeholder="Parolă"/>
+                                <input type="password" placeholder="Parolă" value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
-                            <input type="submit" value="Intră în cont" className="btn solid"/>
+                            <input id="buton" value="Intră în cont" className="btn solid" onClick={() => logInWithEmailAndPassword(email, password)}/>
                         </form>
                         <form action="#" className="sign-up-form">
                             <h2 className="title">Creare cont</h2>
                             <div className="input-field">
                                 <i className="fa fa-user"></i>
-                                <input type="text" placeholder="Nume"/>
+                                <input type="text" placeholder="Nume" value={name} onChange={(e) => setName(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-user"></i>
@@ -54,17 +74,17 @@ function Cont() {
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-envelope"></i>
-                                <input type="email" placeholder="Email"/>
+                                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-lock"></i>
-                                <input type="password" placeholder="Parolă"/>
+                                <input type="password" placeholder="Parolă" value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-lock"></i>
                                 <input type="password" placeholder="Confirmare parolă"/>
                             </div>
-                            <input type="submit" className="btn" value="Crează"/>
+                            <input className="btn" value="Creează" onClick={() => registerWithEmailAndPassword(name, email, password)}/>
                         </form>
                     </div>
                 </div>
@@ -81,7 +101,7 @@ function Cont() {
                                         const container = document.querySelector(".container");
                                         container.classList.add("sign-up-mode");
                                     }}>
-                                Crează cont
+                                Creează cont
                             </button>
                         </div>
                         <img src="/img/medic.svg" className="image" alt=""/>

@@ -1,6 +1,6 @@
 import './Documente.css';
 
-function VizualizareIstoricMedical() {
+function Documente() {
 
     return (
         <>
@@ -67,4 +67,4 @@ function VizualizareIstoricMedical() {
     );
 }
 
-export default VizualizareIstoricMedical;
+export default Documente;
