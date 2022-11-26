@@ -5,6 +5,7 @@ import Programare from "./pacient/Programare"
 import Cont from "./components/Cont";
 import Documente from "./pacient/Documente";
 import Fisiere from "./doctor/Fisiere";
+import Acasa from "./Acasa";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Navbar />
           <div className="App">
               <Routes>
+                  <Route path='/' exact element={<Acasa/>}></Route>
                   <Route path='/cont' element={<Cont/>}></Route>
                   <Route path='/programare' element={<Programare/>}></Route>
                   <Route path='/documente' element={<Documente/>}></Route>
