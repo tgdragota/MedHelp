@@ -60,6 +60,10 @@ function Cont() {
                                 <i className="fa fa-lock"></i>
                                 <input type="password" placeholder="Parolă"/>
                             </div>
+                            <div className="input-field">
+                                <i className="fa fa-lock"></i>
+                                <input type="password" placeholder="Confirmare parolă"/>
+                            </div>
                             <input type="submit" className="btn" value="Crează"/>
                         </form>
                     </div>
