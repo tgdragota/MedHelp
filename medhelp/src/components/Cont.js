@@ -10,15 +10,11 @@ function Cont() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+    const [cnp, setCnp] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
-        /*if (loading) {
-            console.log("**");
-            // maybe trigger a loading screen
-            return;
-        }*/
-        if (user) navigate("/dashboard");
+        if (user) navigate("/");
     }, [user, loading]);
 
     return (
@@ -26,7 +22,7 @@ function Cont() {
             <div className="container">
                 <div className="forms-container">
                     <div className="signin-signup">
-                        <form action="#" className="sign-in-form">
+                        <form className="sign-in-form">
                             <h2 className="title">Autentificare</h2>
                             <div className="input-field">
                                 <i className="fa fa-user"></i>
@@ -36,7 +32,7 @@ function Cont() {
                                 <i className="fa fa-lock"></i>
                                 <input type="password" placeholder="Parolă" value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
-                            <input id="buton" value="Intră în cont" className="btn solid" onClick={() => logInWithEmailAndPassword(email, password)}/>
+                            <input readOnly value="Intră în cont" className="btn solid" onClick={() => logInWithEmailAndPassword(email, password)} />
                         </form>
                         <form action="#" className="sign-up-form">
                             <h2 className="title">Creare cont</h2>
@@ -58,7 +54,7 @@ function Cont() {
                             </div>
                             <div className="input-field">
                                 <i className="fas fa-id-card"></i>
-                                <input type="text" placeholder="CNP"/>
+                                <input type="text" placeholder="CNP" value={cnp} onChange={(e) => setCnp(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fas fa-location-dot"></i>
@@ -84,7 +80,7 @@ function Cont() {
                                 <i className="fa fa-lock"></i>
                                 <input type="password" placeholder="Confirmare parolă"/>
                             </div>
-                            <input className="btn" value="Creează" onClick={() => registerWithEmailAndPassword(name, email, password)}/>
+                            <input readOnly className="btn" value="Creează" onClick={() => registerWithEmailAndPassword(name, email, password, cnp)}/>
                         </form>
                     </div>
                 </div>
