@@ -30,14 +30,6 @@ async function isValid(cnp) {
     }
 }
 
-const getValid = async (cnp) => {
-    let valid;
-    isValid(cnp).then((value) => {
-        valid = value;
-    })
-    return valid;
-}
-
 const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
