@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { auth, db, logout } from "../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import Navbar from "./Navbar"
 
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
@@ -12,7 +12,9 @@ function Dashboard() {
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) {
+      return navigate("/");
+    }
   }, [user, loading, navigate]);
 
   return (

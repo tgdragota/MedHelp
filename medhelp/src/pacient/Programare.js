@@ -1,23 +1,33 @@
 import './Programare.css';
+import {useState} from "react";
+import {logInWithEmailAndPassword, programare} from "../firebase";
 
 function Programare() {
+
+    const [data, setData] = useState("");
+    const [ora, setOra] = useState("");
+    const [motiv, setMotiv] = useState("");
+    const [vaccin, setVaccin] = useState(false);
+    const [tipVaccin, setTipVaccin] = useState("");
 
     return (
         <>
             <div className="container">
                 <div className="forms-container">
                     <div className="prog-viz">
-                        <form action="#" className="prog-form">
+                        <form className="prog-form">
                             <h2 className="title">Programare</h2><br />
                             <div className="select-form">
                                 <input type="radio" id="consultatie" name="tip" value="consultatie" defaultChecked="true"
                                        onChange={() => {
+                                           setVaccin(false);
                                            const div = document.querySelector("#custom");
                                            div.setAttribute('class', '');
                                        }}/>
                                 <label htmlFor="consultatie">Consultație</label>
                                 <input type="radio" id="vaccinare" name="tip" value="vaccinare"
                                        onChange={() => {
+                                           setVaccin(true);
                                            const div = document.querySelector("#custom");
                                            div.setAttribute('class', 'drop-down-list');
                                        }}/>
@@ -26,27 +36,25 @@ function Programare() {
                             <br />
                             <div className="input-field">
                                 <i className="fa fa-calendar"></i>
-                                <input type="date" placeholder="Data"/>
+                                <input type="date" placeholder="Data" value={data} onChange={(e) => setData(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-clock"></i>
-                                <input type="time" placeholder="Ora"/>
+                                <input type="time" placeholder="Ora" value={ora} onChange={(e) => setOra(e.target.value)}/>
                             </div>
                             <div className="input-field">
                                 <i className="fa fa-pencil" ></i>
-                                <input type="text" placeholder="" id="custom-input" />
+                                <input type="text" placeholder="" value={motiv} onChange={(e) => setMotiv(e.target.value)} />
                             </div>
-                            <select className="" name="cars" id="custom" hidden >
+                            <select className="" name="cars" id="custom" hidden value={tipVaccin} onChange={(e) => setTipVaccin(e.target.value)}>
                                 <option defaultValue="Selectați" hidden="true">Selectați</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
+                                <option value="vaccin1">vaccin1</option>
+                                <option value="vaccin2">vaccin2</option>
                             </select>
-                            <input type="submit" value="Programează" className="btn solid" id="submit"/>
+                            <input readOnly value="Programează" className="btn solid" id="submit" onClick={() => programare(data, ora, motiv, vaccin, tipVaccin)}/>
                         </form>
                         <form action="#" className="viz-form">
-                            <h2 className="title">Vizualizare programări consultați</h2>
+                            <h2 className="title">Vizualizare programări consultații</h2>
                         </form>
                     </div>
                 </div>

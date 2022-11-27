@@ -1,5 +1,6 @@
 import './Fisiere.css';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {incarca} from "../firebase";
 
 function Fisiere() {
 
@@ -49,20 +50,19 @@ function Fisiere() {
         }
     }, []);
 
+    const [cnp, setCnp] = useState("");
+    const [file, setFile] = useState("");
+
     return (
         <>
             <div className="container">
                 <div className="forms-container">
                     <div className="prog-viz">
-                        <form action="#" className="prog-form">
+                        <form className="prog-form">
                             <h1>Încarcare fișe medicale</h1><br/>
                             <div className="input-field">
                                 <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Nume"/>
-                            </div>
-                            <div className="input-field">
-                                <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Prenume"/>
+                                <input type="text" placeholder="CNP" value={cnp} onChange={(e) => setCnp(e.target.value)}/>
                             </div><br/><br/>
                             <div className="drag-image">
                                 <div className="icon"><i className="fas fa-cloud-upload-alt"></i></div><br/>
@@ -71,19 +71,15 @@ function Fisiere() {
                                 <button id="browse"
                                 >Browse File</button>
                                 <span id="fileName" className="text-primary "/>
-                                <input id="fisiere" type="file" hidden />
+                                <input id="fisiere" type="file" hidden value={file} onChange={(e) => setFile(e.target.value)}/>
                             </div><br/><br/>
-                            <input type="submit" value="Încarcă" className="btn solid"/>
+                            <input readOnly value="Încarcă" className="btn solid" onClick={() => incarca(cnp, file) }/>
                         </form>
                         <form action="#" className="viz-form">
                             <h1>Vizualizare fișe medicale</h1><br/>
                             <div className="input-field">
                                 <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Nume"/>
-                            </div>
-                            <div className="input-field">
-                                <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Prenume"/>
+                                <input type="text" placeholder="CNP"/>
                             </div><br/>
                             <input type="submit" value="Vizualizare" className="btn solid"/>
                         </form>
