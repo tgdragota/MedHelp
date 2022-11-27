@@ -14,7 +14,7 @@ function Cont() {
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
-        if (user) navigate("/");
+        if (user) navigate("/dashboard");
     }, [user, loading]);
 
     return (

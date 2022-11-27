@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {auth} from "../firebase";
 
 class Navbar extends Component {
@@ -8,6 +8,8 @@ class Navbar extends Component {
     handleClick = () =>{
         this.setState({clicked: !this.state.clicked})
     }
+
+
 
     render() {
         let user = auth.currentUser;
