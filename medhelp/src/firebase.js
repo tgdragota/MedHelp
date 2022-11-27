@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut} from "firebase/auth";
 import {getFirestore, query, getDocs, collection, where, addDoc} from "firebase/firestore";
 import React, {useContext} from "react";
+import {uploadBytes, getStorage, ref} from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrmWTc1k2nQCakjGPDJsT2rjvNPfpM6cA",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 async function isValid(cnp) {
     try {
@@ -132,6 +134,8 @@ const cerere = async (tipCerere, motiv) => {
 };
 
 const incarca = async (cnp, file) => {
+    if(file !== '') {
+    const sref = ref(storage, '/files/' + file.name);
     try {
         const user = auth.currentUser;
         await addDoc(collection(db, "fisiere"), {
@@ -139,12 +143,13 @@ const incarca = async (cnp, file) => {
             cnp,
             file
         });
+        await uploadBytes(sref, file);
         window.location.href = '/';
         alert("fișier încărcat cu succes");
     } catch (err) {
         console.error(err);
         alert(err.message);
-    }
+    }}
 };
 
 export {

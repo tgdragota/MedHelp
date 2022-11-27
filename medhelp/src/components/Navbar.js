@@ -31,6 +31,7 @@ function Navbar() {
                         <li><Link to='/'>ACASĂ</Link></li>
                         {loggedIn && pacient && <li><Link to='/programare'>PROGRAMARE</Link></li>}
                         {loggedIn && pacient && <li><Link to='/documente'>DOCUMENTE</Link></li>}
+                        {loggedIn && doctor && <li><Link to='/programari'>PROGRAMARE</Link></li>}
                         {loggedIn && doctor && <li><Link to='/fisiere'>FIȘIERE</Link></li>}
                         {(!loggedIn) && <li className='nav-item'><Link to='/cont' className='nav-links' >Contul meu <i className="fa fa-user"/></Link></li>}
                         {loggedIn && <li className='nav-item'><Link to='/' className='nav-links' onClick={logout}>Ieșire din cont <i className="fa fa-sign-out" aria-hidden="true"/></Link></li>}

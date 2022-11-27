@@ -4,6 +4,9 @@ import {incarca} from "../firebase";
 
 function Fisiere() {
 
+    const [cnp, setCnp] = useState("");
+    const [file, setFile] = useState("");
+
     useEffect(() => {
         const onPageLoad = () => {
             const dropArea = document.querySelector(".drag-image"),
@@ -19,6 +22,7 @@ function Fisiere() {
             input.addEventListener("change", function(){
 
                 file = this.files[0];
+                setFile(file);
                 document.getElementById('fileName').innerHTML = file.name;
             });
 
@@ -26,7 +30,6 @@ function Fisiere() {
                 event.preventDefault();
                 dragText.textContent = "Release to Upload File";
             });
-
 
             dropArea.addEventListener("dragleave", ()=>{
                 dragText.textContent = "Drag & Drop to Upload File";
@@ -50,9 +53,6 @@ function Fisiere() {
         }
     }, []);
 
-    const [cnp, setCnp] = useState("");
-    const [file, setFile] = useState("");
-
     return (
         <>
             <div className="container">
@@ -71,9 +71,9 @@ function Fisiere() {
                                 <button id="browse"
                                 >Browse File</button>
                                 <span id="fileName" className="text-primary "/>
-                                <input id="fisiere" type="file" hidden value={file} onChange={(e) => setFile(e.target.value)}/>
+                                <input id="fisiere" type="file" hidden/>
                             </div><br/><br/>
-                            <input readOnly value="Încarcă" className="btn solid" onClick={() => incarca(cnp, file) }/>
+                            <input type="submit" value="Încarcă" className="btn solid"/>
                         </form>
                         <form action="#" className="viz-form">
                             <h1>Vizualizare fișe medicale</h1><br/>
