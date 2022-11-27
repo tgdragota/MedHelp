@@ -2,7 +2,7 @@ import "./Navbar.css";
 import React, {useEffect, Component, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {role} from "../firebase";
+import {logout, role} from "../firebase";
 
 function Navbar() {
     const [clicked, setClicked] = useState(false);
@@ -32,7 +32,8 @@ function Navbar() {
                         {loggedIn && pacient && <li><Link to='/programare'>PROGRAMARE</Link></li>}
                         {loggedIn && pacient && <li><Link to='/documente'>DOCUMENTE</Link></li>}
                         {loggedIn && doctor && <li><Link to='/fisiere'>FIȘIERE</Link></li>}
-                        <li className='nav-item'><Link to='/cont' className='nav-links' >Contul meu <i className="fa fa-user"/></Link></li>
+                        {(!loggedIn) && <li className='nav-item'><Link to='/cont' className='nav-links' >Contul meu <i className="fa fa-user"/></Link></li>}
+                        {loggedIn && <li className='nav-item'><Link to='/' className='nav-links' onClick={logout}>Ieșire din cont <i className="fa fa-sign-out" aria-hidden="true"/></Link></li>}
                     </ul>
                 </div>
                 <div id="mobile" onClick={() => {setClicked(!clicked);}}>
