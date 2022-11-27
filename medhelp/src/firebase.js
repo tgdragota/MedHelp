@@ -131,6 +131,22 @@ const cerere = async (tipCerere, motiv) => {
     }
 };
 
+const incarca = async (cnp, file) => {
+    try {
+        const user = auth.currentUser;
+        await addDoc(collection(db, "fisiere"), {
+            uid: user.uid,
+            cnp,
+            file
+        });
+        window.location.href = '/';
+        alert("fișier încărcat cu succes");
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
 export {
     auth,
     db,
@@ -139,5 +155,6 @@ export {
     logout,
     role,
     programare,
-    cerere
+    cerere,
+    incarca
 };

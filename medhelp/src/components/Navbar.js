@@ -19,7 +19,7 @@ function Navbar() {
                 setDoctor((role() === "doctor"));
             }
         });
-    }, [auth]);
+    }, [auth, loggedIn]);
 
         return (<>
             <nav className='navbar'>
