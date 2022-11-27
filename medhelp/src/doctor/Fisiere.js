@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 
 function Fisiere() {
 
+
     useEffect(() => {
         const onPageLoad = () => {
             const dropArea = document.querySelector(".drag-image"),

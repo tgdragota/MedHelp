@@ -71,10 +71,73 @@ const logout = () => {
     signOut(auth);
 };
 
+const role = () => {
+    const email = auth.currentUser.email;
+    if (email.includes('medhelp')) {
+        return 'doctor';
+    } else {
+        return 'pacient';
+    }
+};
+
+const programare = async (data, ora, motiv, vaccin, tipVaccin) => {
+    if(vaccin) {
+        try {
+            const user = auth.currentUser;
+            await addDoc(collection(db, "programari_vaccin"), {
+                uid: user.uid,
+                data,
+                ora,
+                motiv,
+                tipVaccin
+            });
+            window.location.href='/';
+            alert("programare efectuata cu succes");
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+    }else {
+        try {
+            const user = auth.currentUser;
+            await addDoc(collection(db, "programari_consultatie"), {
+                uid: user.uid,
+                data,
+                ora,
+                motiv,
+            });
+            window.location.href='/';
+            alert("programare efectuata cu succes");
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+    }
+};
+
+const cerere = async (tipCerere, motiv) => {
+    try {
+        const user = auth.currentUser;
+        await addDoc(collection(db, "cereri"), {
+            uid: user.uid,
+            tipCerere,
+            motiv
+        });
+        window.location.href = '/';
+        alert("cerere efectuata cu succes");
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
 export {
     auth,
     db,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     logout,
+    role,
+    programare,
+    cerere
 };

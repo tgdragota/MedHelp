@@ -1,29 +1,31 @@
 import './Documente.css';
+import {useState} from "react";
+import {cerere, programare} from "../firebase";
 
 function Documente() {
+    const [tipCerere, setTipCerere] = useState("");
+    const [motiv, setMotiv] = useState("");
 
     return (
         <>
             <div className="container">
                 <div className="forms-container">
                     <div className="viz-cerere">
-                        <form action="#" className="form-viz">
+                        <form className="form-viz">
                             <h1>Vizualizare documete</h1>
                         </form>
                         <form action="#" className="cerere-form">
                             <h2 className="title">Solicită un document</h2>
-                            <select className="drop-down-list"  name="cars">
+                            <select className="drop-down-list"  name="cars" value={tipCerere} onChange={(e) => setTipCerere(e.target.value)}>
                                 <option defaultValue="Selectați" hidden>Tip cerere</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
+                                <option value="cerere1">cerere1</option>
+                                <option value="cerere2">cerere2</option>
                             </select>
                             <div className="input-field">
                                 <i className="fa fa-pencil"></i>
-                                <input type="text" placeholder="Motiv"/>
+                                <input type="text" placeholder="Motiv" value={motiv} onChange={(e) => setMotiv(e.target.value)}/>
                             </div>
-                            <input type="submit" value="Trimite" className="btn solid"/>
+                            <input readOnly value="Trimite" className="btn solid" onClick={() => cerere(tipCerere, motiv) }/>
                         </form>
                     </div>
                 </div>

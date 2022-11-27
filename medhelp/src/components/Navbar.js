@@ -1,19 +1,25 @@
 import "./Navbar.css";
 import React, {useEffect, Component, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {auth} from "../firebase";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {role} from "../firebase";
 
 function Navbar() {
     const [clicked, setClicked] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
+    const [pacient, setPacient] = useState(false);
+    const [doctor, setDoctor] = useState(false);
 
-    let user = auth.currentUser;
-    if(user) user=user.uid;
-
-    auth.onAuthStateChanged(() => {
-        setLoggedIn(!loggedIn);
-    });
-
+    const auth = getAuth();
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            setLoggedIn(!!user);
+            if(loggedIn) {
+                setPacient((role() === "pacient"));
+                setDoctor((role() === "doctor"));
+            }
+        });
+    }, [auth]);
 
         return (<>
             <nav className='navbar'>
@@ -23,9 +29,9 @@ function Navbar() {
                 <div>
                     <ul id="navbar" className={clicked ? "#navbar active": "#navbar"}>
                         <li><Link to='/'>ACASĂ</Link></li>
-                        {user && <li><Link to='/programare'>PROGRAMARE</Link></li>}
-                        {user && <li><Link to='/documente'>DOCUMENTE</Link></li>}
-                        {user && <li><Link to='/fisiere'>FIȘIERE</Link></li>}
+                        {loggedIn && pacient && <li><Link to='/programare'>PROGRAMARE</Link></li>}
+                        {loggedIn && pacient && <li><Link to='/documente'>DOCUMENTE</Link></li>}
+                        {loggedIn && doctor && <li><Link to='/fisiere'>FIȘIERE</Link></li>}
                         <li className='nav-item'><Link to='/cont' className='nav-links' >Contul meu <i className="fa fa-user"/></Link></li>
                     </ul>
                 </div>
