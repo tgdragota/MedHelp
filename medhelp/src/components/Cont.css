@@ -138,7 +138,11 @@ form.sign-in-form {
     height: 49px;
     border-radius: 49px;
     color: #fff;
+    font-style: normal;
+    font-family: Calibri, serif;
+    font-size: 15px;
     text-transform: uppercase;
+    text-align: center;
     font-weight: 600;
     margin: 10px 0;
     cursor: pointer;

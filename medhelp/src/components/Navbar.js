@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import {Component} from "react";
 import {Link} from "react-router-dom";
+import {auth, logout} from "../firebase";
 
 class Navbar extends Component {
     state={clicked: false};
@@ -38,6 +39,11 @@ class Navbar extends Component {
                         <li className='nav-item'>
                             <Link to='/cont' className='nav-links' >
                                 Contul meu <i className="fa fa-user"/>
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to='/' className='nav-links' onClick={logout}>
+                                Ieșire din cont <i className="fa fa-sign-out" aria-hidden="true"/>
                             </Link>
                         </li>
                     </ul>

@@ -54,10 +54,7 @@ function Programare() {
                 <div className="panels-container">
                     <div className="panel left-panel">
                         <div className="content">
-                            <h3>Vizualizare programări</h3>
-                            <p>
-                                mesaj daca e nevoie
-                            </p>
+                            <h3>Vizualizare programări</h3><br/>
                             <button className="btn transparent" id="vizualizare"
                                     onClick={() => {
                                         const container = document.querySelector(".container");
@@ -70,10 +67,7 @@ function Programare() {
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
-                            <h3>Programează o consultație</h3>
-                            <p>
-                                mesaj daca e nevoie
-                            </p>
+                            <h3>Programează o consultație</h3><br/>
                             <button className="btn transparent" id="programare"
                                     onClick={() => {
                                         const container = document.querySelector(".container");

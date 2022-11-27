@@ -42,3 +42,14 @@
     left: 700px;
     top: 100px;
 }
+.flex-row {
+    justify-content: center;
+    display: flex;
+}
+.dot{
+    position: relative;
+    top:600px;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+}

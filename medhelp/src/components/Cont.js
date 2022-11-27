@@ -36,7 +36,7 @@ function Cont() {
                                 <i className="fa fa-lock"></i>
                                 <input type="password" placeholder="Parolă" value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
-                            <input id="buton" value="Intră în cont" className="btn solid" onClick={() => logInWithEmailAndPassword(email, password)}/>
+                            <input readOnly id="buton" value="Intră în cont" className="btn solid" onClick={() => logInWithEmailAndPassword(email, password)}/>
                         </form>
                         <form action="#" className="sign-up-form">
                             <h2 className="title">Creare cont</h2>

@@ -6,6 +6,7 @@ import Cont from "./components/Cont";
 import Documente from "./pacient/Documente";
 import Fisiere from "./doctor/Fisiere";
 import Acasa from "./Acasa";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                   <Route path='/programare' element={<Programare/>}></Route>
                   <Route path='/documente' element={<Documente/>}></Route>
                   <Route path='/fisiere' element={<Fisiere/>}></Route>
+                  <Route path='/dashboard' element={<Dashboard/>}></Route>
               </Routes>
           </div>
       </>

@@ -93,10 +93,7 @@ function Fisiere() {
                 <div className="panels-container">
                     <div className="panel left-panel">
                         <div className="content">
-                            <h3>Fișe medicale pacienți</h3>
-                            <p>
-                                mesaj daca e nevoie
-                            </p>
+                            <h3>Fișe medicale pacienți</h3><br/>
                             <button className="btn transparent" id="documente"
                                     onClick={() => {
                                         const container = document.querySelector(".container");
@@ -109,10 +106,7 @@ function Fisiere() {
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
-                            <h3>Încărcare fișe medicale</h3>
-                            <p>
-                                mesaj daca e nevoie
-                            </p>
+                            <h3>Încărcare fișe medicale</h3><br/>
                             <button className="btn transparent" id="cerere"
                                     onClick={() => {
                                         const container = document.querySelector(".container");
