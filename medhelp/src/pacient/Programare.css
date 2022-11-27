@@ -9,6 +9,24 @@ input {
     font-family: "Poppins", sans-serif;
 }
 
+td, th {
+    width: 200px;
+    border: 1px solid #777;
+    padding: 1rem;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
+caption {
+    font-size: 0.8rem;
+}
+
 .container {
     position: relative;
     width: 100%;
