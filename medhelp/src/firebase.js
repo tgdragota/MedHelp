@@ -51,7 +51,7 @@ async function getProgramari(uid) {
 
         return p2;
     } catch (err) {
-        console.log("error");
+        console.log(err);
     }
 }
 
@@ -194,6 +194,8 @@ const incarca = async (cnp, file) => {
 export {
     auth,
     db,
+    app,
+    storage,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     logout,

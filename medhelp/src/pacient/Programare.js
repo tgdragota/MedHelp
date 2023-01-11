@@ -1,6 +1,8 @@
 import './Programare.css';
 import {useEffect, useState} from "react";
-import {programare, getProgramari, auth} from "../firebase";
+import {programare, getProgramari, auth, db} from "../firebase";
+import {Table} from "react-bootstrap";
+import {Tabel} from "./Tabel";
 
 function Programare() {
 
@@ -9,6 +11,7 @@ function Programare() {
     const [motiv, setMotiv] = useState("");
     const [vaccin, setVaccin] = useState(false);
     const [tipVaccin, setTipVaccin] = useState("");
+
     return (
         <>
             <div className="container">
@@ -55,16 +58,9 @@ function Programare() {
                         <form action="#" className="viz-form">
                             <h2 className="title">Vizualizare programări</h2><br />
                             <div>
-                                <table>
-                                    <thead>
-                                    <th>Data</th>
-                                    <th>Ora</th>
-                                    <th>Tip</th>
-                                    </thead>
-                                    <tbody id="tbody1">
-
-                                    </tbody>
-                                </table>
+                                {
+                                    <Tabel/>
+                                }
                             </div>
                         </form>
                     </div>
