@@ -58,7 +58,7 @@ function Programari() {
                             <input readOnly value="Programează" className="btn solid" id="submit" onClick={() => programare(data, ora, motiv, vaccin, tipVaccin)}/>
                         </form>
                         <form action="#" className="viz-form">
-                            <h2 className="title">Vizualizare programări consultații</h2><br />
+                            <h2 className="title">Vizualizare programări</h2><br />
                             <div>
                                 <table>
                                     <thead>

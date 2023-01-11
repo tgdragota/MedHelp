@@ -1,6 +1,6 @@
 import './Programare.css';
-import {useState} from "react";
-import {logInWithEmailAndPassword, programare} from "../firebase";
+import {useEffect, useState} from "react";
+import {programare, getProgramari, auth} from "../firebase";
 
 function Programare() {
 
@@ -9,7 +9,6 @@ function Programare() {
     const [motiv, setMotiv] = useState("");
     const [vaccin, setVaccin] = useState(false);
     const [tipVaccin, setTipVaccin] = useState("");
-
     return (
         <>
             <div className="container">
@@ -54,7 +53,7 @@ function Programare() {
                             <input readOnly value="Programează" className="btn solid" id="submit" onClick={() => programare(data, ora, motiv, vaccin, tipVaccin)}/>
                         </form>
                         <form action="#" className="viz-form">
-                            <h2 className="title">Vizualizare programări consultații</h2><br />
+                            <h2 className="title">Vizualizare programări</h2><br />
                             <div>
                                 <table>
                                     <thead>
@@ -62,7 +61,9 @@ function Programare() {
                                     <th>Ora</th>
                                     <th>Tip</th>
                                     </thead>
-                                    <tbody id="tbody1"></tbody>
+                                    <tbody id="tbody1">
+
+                                    </tbody>
                                 </table>
                             </div>
                         </form>

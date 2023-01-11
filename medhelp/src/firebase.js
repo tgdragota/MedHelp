@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from "firebase/auth";
 import {getFirestore, query, getDocs, collection, where, addDoc} from "firebase/firestore";
 import React, {useContext} from "react";
 import {uploadBytes, getStorage, ref} from "firebase/storage";
@@ -25,10 +25,47 @@ async function isValid(cnp) {
             where("CNP", "==", cnp)
         );
         const querySnap = await getDocs(q);
-        console.log("size " + querySnap._snapshot.docs.size);
         return (querySnap._snapshot.docs.size !== 0);
     } catch (err) {
         console.log("cannot add user");
+    }
+}
+
+async function getProgramari(uid) {
+    try {
+        const q1 = query(
+            collection(db, "programari_consultatie"),
+            where("uid", "==", uid)
+        );
+        const q2 = query(
+            collection(db, "programari_vaccin"),
+            where("uid", "==", uid)
+        );
+        const querySnap1 = await getDocs(q1);
+        const querySnap2 = await getDocs(q2);
+
+        const p1 = querySnap1._snapshot.docs;
+        const p2 = querySnap2._snapshot.docs;
+
+        p1.forEach(d => p2.add(d));
+
+        return p2;
+    } catch (err) {
+        console.log("error");
+    }
+}
+
+async function getFisiere(cnp) {
+    try {
+        const q = query(
+            collection(db, "fisiere"),
+            where("CNP", "==", cnp)
+        );
+        const querySnap = await getDocs(q);
+
+        //querySnap._snapshot.docs;
+    } catch (err) {
+        console.log("error");
     }
 }
 
@@ -135,13 +172,15 @@ const cerere = async (tipCerere, motiv) => {
 
 const incarca = async (cnp, file) => {
     if(file !== '') {
+        alert(file.name);
     const sref = ref(storage, '/files/' + file.name);
+    const name = file.name;
     try {
         const user = auth.currentUser;
         await addDoc(collection(db, "fisiere"), {
             uid: user.uid,
             cnp,
-            file
+            fisier: name
         });
         await uploadBytes(sref, file);
         window.location.href = '/';
@@ -161,5 +200,6 @@ export {
     role,
     programare,
     cerere,
-    incarca
+    incarca,
+    getProgramari
 };

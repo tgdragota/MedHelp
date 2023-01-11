@@ -1,6 +1,6 @@
 import './Fisiere.css';
 import React, {useEffect, useState} from 'react';
-import {incarca} from "../firebase";
+import {incarca, registerWithEmailAndPassword} from "../firebase";
 
 function Fisiere() {
 
@@ -15,7 +15,7 @@ function Fisiere() {
                 input = dropArea.querySelector("#fisiere");
             let file;
 
-            button.onclick = ()=>{
+            button.onclick = (event)=>{
                 input.click();
             }
 
@@ -39,6 +39,7 @@ function Fisiere() {
                 event.preventDefault();
 
                 file = event.dataTransfer.files[0];
+                setFile(file);
                 document.getElementById('fileName').innerHTML = file.name;
             });
         };
@@ -73,7 +74,7 @@ function Fisiere() {
                                 <span id="fileName" className="text-primary "/>
                                 <input id="fisiere" type="file" hidden/>
                             </div><br/><br/>
-                            <input type="submit" value="Încarcă" className="btn solid"/>
+                            <input value="Încarcă" className="btn solid" onClick={() => incarca(cnp, file)}/>
                         </form>
                         <form action="#" className="viz-form">
                             <h1>Vizualizare fișe medicale</h1><br/>
